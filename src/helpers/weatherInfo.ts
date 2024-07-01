@@ -4,11 +4,11 @@ import { NextFunction } from "express";
 
 import axios from "axios";
 
-export const getUserLocationInfo = async (next:NextFunction) => {
+export const getUserLocationInfo = async (clientIp:any,next:NextFunction) => {
   const API_KEY = process.env.LOCATION_API_KEY;
   const fields = "geo";
   const ipResponse = (await axios.get("https://api.ipify.org?format=json")).data.ip;
-  const URL = `https://api.ipgeolocation.io/ipgeo?apiKey=${API_KEY}&fields=${fields}`;
+  const URL = `https://api.ipgeolocation.io/ipgeo?apiKey=${API_KEY}&fields=${fields}&ip=${clientIp}`;
 try {
   const response = await axios.get(URL);
   return response.data;
