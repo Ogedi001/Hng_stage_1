@@ -28,8 +28,8 @@ export const getClientWeatherGreeting = async (req: Request, res: Response, next
     const temperature = weather.main.temp;
     const responseJson = {
         client_ip: clientIp,
-        location: locationInfo.city,
-        greeting: `Hello, ${visitor_name}! The temperature is ${temperature.toFixed(1)} degrees Celsius in ${locationInfo.city}`
+        location: `${locationInfo.city},${locationInfo.state_prov}`,
+        greeting: `Hello, ${visitor_name}! The temperature is ${temperature.toFixed(1)} degrees Celsius in ${locationInfo.city},${locationInfo.state_prov} `
     };
 
     res.status(StatusCodes.OK).json(responseJson)
