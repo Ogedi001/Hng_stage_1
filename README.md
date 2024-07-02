@@ -14,15 +14,13 @@ This project sets up a basic web server that exposes an API endpoint to greet a 
   "location": "New York",
   "greeting": "Hello, Mark! The temperature is 11 degrees Celsius in New York"
 }
-
+```
 
 ## Environmental variable
 
-```yaml
-
-LOCATION_API_KEY=" " #ipgeolocation api
-WEATHER_API_KEY=" "  #openweather api
-#ENVIRONMENT=production
-
+```env
+ LOCATION_API_KEY=" " #ipgeolocation api
+ WEATHER_API_KEY=" "  #openweather api
+ #ENVIRONMENT=production
 ```
 
