@@ -10,7 +10,7 @@ export const getClientWeatherGreeting = async (req: Request, res: Response, next
         throw new BadRequestError(' "Visitor_name" is a required field in the query parameters.');
 
     const xForwardedFor = req.headers['x-forwarded-for'];
-  let clientIp = req.connection.remoteAddress; // Default to remote address
+  let clientIp = req.connection.remoteAddress; 
 
   if (typeof xForwardedFor === 'string') {
     clientIp = xForwardedFor.split(',')[0].trim();
@@ -24,13 +24,14 @@ export const getClientWeatherGreeting = async (req: Request, res: Response, next
       locationInfo = await getUserLocationInfo(next, clientIp)
     }
 
-    // const weather = await getUserWeather(locationInfo.latitude, locationInfo.longitude, next)
-    // const temperature = weather.main.temp;
-    // const responseJson = {
-    //     client_ip: clientIp,
-    //     location: weather.name,
-    //     greeting: `Hello, ${visitor_name}! The temperature is ${temperature.toFixed(1)} degrees Celsius in ${weather.name}`
-    // };
+    const weather = await getUserWeather(locationInfo.latitude, locationInfo.longitude, next)
+    const temperature = weather.main.temp;
+    const responseJson = {
+        client_ip: clientIp,
+        ip: locationInfo.ip,
+        location: locationInfo.city,
+        greeting: `Hello, ${visitor_name}! The temperature is ${temperature.toFixed(1)} degrees Celsius in ${weather.name}`
+    };
 
-    res.status(StatusCodes.OK).json(locationInfo)
+    res.status(StatusCodes.OK).json(responseJson)
 }

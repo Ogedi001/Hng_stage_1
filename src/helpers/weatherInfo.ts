@@ -7,10 +7,10 @@ import axios from "axios";
 export const getUserLocationInfo = async (next:NextFunction,clientIp?:any,) => {
   const API_KEY = process.env.LOCATION_API_KEY;
   const fields = "geo";
-  const ipResponse = clientIp?`https://ipinfo.io/${clientIp}/json?token=8c85fa67ac2fa1`:`https://ipinfo.io?token=8c85fa67ac2fa1`
+  
   const URL =clientIp?`https://api.ipgeolocation.io/ipgeo?apiKey=${API_KEY}&fields=${fields}&ip=${clientIp}`:`https://api.ipgeolocation.io/ipgeo?apiKey=${API_KEY}&fields=${fields}`;
 try {
-  const response = await axios.get(ipResponse);
+  const response = await axios.get(URL);
   return response.data;
 } catch (error) {
   next(error)
