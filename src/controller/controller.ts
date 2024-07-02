@@ -24,12 +24,12 @@ export const getClientWeatherGreeting = async (req: Request, res: Response, next
       locationInfo = await getUserLocationInfo(next, clientIp)
     }
 
-    const weather = await getUserWeather(locationInfo.latitude, locationInfo.longitude, next)
+    const weather = await getUserWeather(locationInfo.lat, locationInfo.lon, next)
     const temperature = weather.main.temp;
     const responseJson = {
-        client_ip: clientIp,
-        location: `${locationInfo.city},${locationInfo.state_prov}`,
-        greeting: `Hello, ${visitor_name}! The temperature is ${temperature.toFixed(1)} degrees Celsius in ${locationInfo.city},${locationInfo.state_prov} `
+        client_ip: locationInfo.query,
+        location: `${locationInfo.city},`,
+        greeting: `Hello, ${visitor_name}! The temperature is ${temperature.toFixed(1)} degrees Celsius in ${locationInfo.city} `
     };
 
     res.status(StatusCodes.OK).json(responseJson)
