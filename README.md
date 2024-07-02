@@ -17,9 +17,12 @@ This project sets up a basic web server that exposes an API endpoint to greet a 
 
 
 ## Environmental variable
+
 ```env
+
 LOCATION_API_KEY=" " #ipgeolocation api
 WEATHER_API_KEY=" "  #openweather api
 #ENVIRONMENT=production
+
 ```
 
