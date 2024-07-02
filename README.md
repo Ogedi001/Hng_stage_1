@@ -3,6 +3,8 @@
 This project sets up a basic web server that exposes an API endpoint to greet a visitor, providing their IP address, location, and the current temperature.
 
 ## Endpoint
+**Base URL**
+#### https://hng_stage_1.cleverapps.io
 
 ### [GET] `/api/hello?visitor_name="Mark"`
 
